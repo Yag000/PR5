@@ -22,9 +22,12 @@
 \theoremstyle{plain}
 \newtheorem{question}{Question}
 
+\theoremstyle{definition} 
+\newtheorem{definition}{Définition}
+
 
 \begin{document}
-% \LARGE Useful for dyslexic people
+% \LARGE % Useful for dyslexic people
 
 \title{Questions Cours}
 \author{Yago iglesias}
@@ -36,14 +39,14 @@
 
 \begin{question}
 	Donner la définition de $\sigma$-algèbre.
-	\begin{proof}
+	\begin{definition}
 		Une $\sigma$-algèbre sur un ensemble $E$ est une famille $\mathscr{A}$ de parties de $E$ telle que:
 		\begin{enumerate}
 			\item $\emptyset \in \mathscr{A}$
 			\item $\mathscr{A}$ est stable par passage au complémentaire
 			\item $\mathscr{A}$ est stable par union dénombrable
 		\end{enumerate}
-	\end{proof}
+	\end{definition}
 \end{question}
 
 \begin{question}
@@ -66,14 +69,14 @@
 
 \section{CC1}
 \begin{question}
-	Donner la définition de probabilité sur $(\mathbb{R}, \mathscr{B} (\mathbb{R})$
-	\begin{proof}
-		Une probabilité sur $(\mathbb{R}, \mathscr{B} (\mathbb{R})$ est une application $P$ de $\mathscr{B} (\mathbb{R})$ dans $[0,1]$ telle que:
-		\begin{enumerate}
-			\item $P(\mathbb{R}) = 1$
-			\item $P$ est $\sigma$-additive
-		\end{enumerate}
-	\end{proof}
+Donner la définition de probabilité sur $(\mathbb{R}, \mathscr{B} (\mathbb{R})$
+\begin{proof}
+Une probabilité sur $(\mathbb{R}, \mathscr{B} (\mathbb{R})$ est une application $P$ de $\mathscr{B} (\mathbb{R})$ dans $[0,1]$ telle que:
+\begin{enumerate}
+	\item $P(\mathbb{R}) = 1$
+	\item $P$ est $\sigma$-additive
+\end{enumerate}
+\end{proof}
 \end{question}
 
 \begin{question}
@@ -361,6 +364,30 @@ Supposons que $\mathbb{E} (X_i^2) < \infty$ pour tout $i \in \{1, \dots, n\}$.
 
 	\end{proof}
 \end{question}
+
+\section{Vecteurs aléatoires}
+
+\begin{question}
+	Donner la définition de produit de convolution de deux densités. Et montrer que
+	$f_{X+Y} = f_X * f_Y$.
+	\begin{definition}
+		Soient $X$ et $Y$ deux variables aléatoires réelles indépendantes admettant des densités $f$ et $g$.
+		On a que:
+		\begin{equation*}
+			(f * g)(s) = \int_{\mathbb{R}} f (s - t)g(t) dt = \int_{\mathbb{R}} f (t)g(s - t) dt
+		\end{equation*}
+	\end{definition}
+	\begin{proof}
+		Calculons $\mathbb{E}(h(X+Y))$, por tout $h$ continue bornée.
+		\begin{eqnarray*}
+			\mathbb{E}(h(X+Y)) &=& \int_{\mathbb{R}^2} h(x + y) f(x)g(y)\, dx \, dy \\
+			&=& \int_{\mathbb{R}^2} h(s) f(s - t)g(t)\, ds \, dt \\
+			&=& \int_{\mathbb{R}} h(s) \left( \int_{\mathbb{R}}  f(s-t)g(t)\, dt \right)\, ds \\
+			&=& \int_{\mathbb{R}} h(s) (f * g)(s)\, ds
+		\end{eqnarray*}
+	\end{proof}
+\end{question}
+
 
 \section{Convergence}
 
