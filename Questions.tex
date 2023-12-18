@@ -241,6 +241,25 @@
 
 \end{question}
 
+\begin{question}
+	Enoncer et démontrer l'inégalité de Bienaymé-Tchebychev.
+	\begin{proof}
+		Soit $X$ une variable aléatoire réelle. Alors pour tout $t > 0$,
+		\begin{equation*}
+			\mathbb{P} (|X - \mathbb{E} (X)| \geq t) \le \frac{Var(X)}{t^2}
+		\end{equation*}
+		\begin{proof}
+			On a que
+			\begin{eqnarray*}
+				\mathbb{P} (|X - \mathbb{E} (X)| \geq t) &=& \mathbb{P} ((X - \mathbb{E} (X))^2 \geq t^2) \\
+				&\le& \frac{\mathbb{E} ((X - \mathbb{E} (X))^2)}{t^2} \\
+				&=& \frac{Var(X)}{t^2}
+			\end{eqnarray*}
+		\end{proof}
+	\end{proof}
+\end{question}
+
+
 
 \section{CC3}
 
