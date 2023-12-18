@@ -1,0 +1,465 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{amsmath}
+\usepackage{amssymb} 
+\usepackage{amsthm}  
+\usepackage{dsfont}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+\usepackage{geometry}
+
+\usepackage{hyperref}        
+
+
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\indep}{\perp \!\!\! \perp}
+
+\theoremstyle{plain}
+\newtheorem{question}{Question}
+
+
+\begin{document}
+\title {Questions Cours}
+\author{Yago iglesias}
+\maketitle
+\tableofcontents
+
+\section{$\sigma$-algèbres}
+
+\begin{question}
+	Donner la définition de $\sigma$-algèbre.
+	\begin{proof}
+		Une $\sigma$-algèbre sur un ensemble $E$ est une famille $\mathscr{A}$ de parties de $E$ telle que:
+		\begin{enumerate}
+			\item $\emptyset \in \mathscr{A}$
+			\item $\mathscr{A}$ est stable par passage au complémentaire
+			\item $\mathscr{A}$ est stable par union dénombrable
+		\end{enumerate}
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Montrer que la $\sigma$-algèbre des boréliens de $\mathbb{R}$ est la plus petite $\sigma$-algèbre contenant les intervalles ouverts.
+
+	\begin{proof}
+		Soit $\mathscr{B} (\mathbb{R})$ la $\sigma$-algèbre des boréliens de $\mathbb{R}$. On a que
+		$\mathscr{B} (\mathbb{R})$ contient les intervalles ouverts par définition.
+
+		Soit $\mathscr{A}$ la plus petite $\sigma$-algèbre contenant les intervalles ouverts. On a que:
+		\begin{enumerate}
+			\item $\mathscr{A}$ contient les intervalles ouverts.
+			\item $\mathscr{A}$ est stable par passage au complémentaire car les intervalles ouverts le sont.
+			\item $\mathscr{A}$ est stable par union dénombrable car les intervalles ouverts le sont.
+		\end{enumerate}
+		Donc $\mathscr{A}$ contient les boréliens (ils vérifient les trois propriétés ci-dessus).
+		Ainsi, $\mathscr{B}$ vérifie la propriété demandée.
+	\end{proof}
+\end{question}
+
+\section{CC1}
+\begin{question}
+	Donner la définition de probabilité sur $(\mathbb{R}, \mathscr{B} (\mathbb{R})$
+	\begin{proof}
+		Une probabilité sur $(\mathbb{R}, \mathscr{B} (\mathbb{R})$ est une application $P$ de $\mathscr{B} (\mathbb{R})$ dans $[0,1]$ telle que:
+		\begin{enumerate}
+			\item $P(\mathbb{R}) = 1$
+			\item $P$ est $\sigma$-additive
+		\end{enumerate}
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Donner la dfinition de fonction de répartition $F_P$ d'une probabilité $P$ sur $(\mathbb{R}, \mathscr{B} (\mathbb{R}))$
+
+	\begin{proof}
+		La fonction de répartition d'une probabilité $P$ sur $(\mathbb{R}, \mathscr{B} (\mathbb{R})$ est l'application $F_P$ de $\mathbb{R}$ dans $[0,1]$ définie par:
+		\begin{equation*}
+			F_P(x) = P(]-\infty, x])
+		\end{equation*}
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Montrer que $F_P$ est continue à droite
+	\begin{proof}
+		$F_X$ est CAD car, si $(x_n)$ est une suite décroissante qui tend vers $x$, on a que $\{X \leq
+			x_{n+1}\} \in \{X \leq x_n\}$ pour tout $n$ et $\lim_n{X \leq x_n} = \cap_n{\{X \leq x_n\}} = \{{X \leq x\}}$.
+		Par le comportement des probabilités pour des suites monotones dévénements
+		(si $(A_n)$ est une suite décroissante d’événements, alors $P (A_n) \implies P (\cap_n{\{A_n\}}))$
+		on conclut que
+		\begin{equation*}
+			\lim_n F_X (x_n) = \lim_n{ P (X \leq x_n)} = P (\{X \leq x\}) = F_X (x)
+		\end{equation*}
+	\end{proof}
+\end{question}
+
+\section{Fonctions de répartition}
+
+
+\begin{question}
+	Montrer que $\lim_{x \to -\infty} F_X (x) = 0$ et $\lim_{x \to \infty} F_X (x) = 1$
+	\begin{proof}
+		$F_X$ est croissante, donc elle admet des limites en $-\infty$ et $\infty$.
+		\begin{eqnarray*}
+			\lim_{x \to -\infty} F_X (x) &=& \lim_{n \to \infty} F_X (-n) \\
+			&=& \lim_{n \to \infty} P (X \in ]-\infty, -n]) \\
+			&=& P (\emptyset) \\
+			&=& 0
+		\end{eqnarray*}
+
+		La deuxième demonstration est similaire.
+	\end{proof}
+\end{question}
+
+
+
+\begin{question}
+	Montrer que $\mathbb{P} (X = x) = F_X (x) - \lim_{y \to x^-} F_X (y)$
+	\begin{proof}
+		On remarque que pour tout $x \in \mathbb{R}$ et tout $n \in \mathbb{N}^*$, on a que:
+		\begin{eqnarray*}
+			\mathbb{P} \left(\left] x- \frac{1}{n}, x \right]\right) &=& \mathbb{P} \left(\left] -\infty, x  \right]\right) - \mathbb{P} \left(\left] -\infty, x- \frac{1}{n} \right]\right) \\
+			&=& F_X (x) - F_X (x- \frac{1}{n})
+		\end{eqnarray*}
+		De plus,
+		$$ \{x\} = \cap_{n \in \mathbb{N}^*} B_n, \quad B_n := \left] x- \frac{1}{n}, x \right]$$
+		Comme $F_x$ est continue a droite et $B_n$ est décroissante, on a que:
+		\begin{eqnarray*}
+			\mathbb{P} (\{x\}) &=& \lim_{n \to \infty} \mathbb{P} (B_n) \\
+			&=& \lim_{n \to \infty} \left( F_X (x) - F_X (x- \frac{1}{n}) \right) \\
+			&=& F_X (x) - \lim_{n \to \infty} F_X (x- \frac{1}{n}) \\
+			&=& F_X (x) - \lim_{y \to x^-} F_X (y)
+		\end{eqnarray*}
+
+	\end{proof}
+\end{question}
+
+\section{CC2}
+
+\begin{question}
+	Donner la définition de variable aléatoire réelle
+	\begin{proof}
+		Soit $(\Omega, \mathscr{F}, P)$ un espace probabilisé. Une variable aléatoire réelle est une application $X:\mathscr{F} \to \mathbb{R}$  telle que pour tout $B \in \mathscr{B} (\mathbb{R})$, $X^{-1} (B) \in \mathscr{F}$
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Donner la définition de espérance d'une variable aléatoire réelle positive.
+	\begin{proof}
+		Soit $(\Omega, \mathscr{F}, P)$ un espace probabilisé. Soit $X$ une variable aléatoire réelle positive. L'espérance de $X$ est le réel positif ou infini défini par:
+		\begin{equation*}
+			\mathbb{E} (X) = \int_0^{\infty} \mathbb{P} (X \ge t) dt
+		\end{equation*}
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Enoncer et démontrer l'inégalité de Markov
+	\begin{proof}
+		Soit $X$ une variable aléatoire réelle positive. Alors pour tout $t > 0$,
+		\begin{equation*}
+			\mathbb{P} (X > t) \le \frac{\mathbb{E} (X)}{t}
+		\end{equation*}
+		\begin{proof}
+			Soit $t > 0$. On a que $x\mathds{1}_{\{X > x\}} < X$. Par croissance de l'espérance, on a que:
+			\begin{equation*}
+				\mathbb{E} (x\mathds{1}_{\{X > x\}}) < \mathbb{E} (X)
+			\end{equation*}
+		\end{proof}
+		Or $\mathbb{E} (x\mathds{1}_{\{X > x\}}) = x\mathbb{E} (\mathds{1}_{\{X > x\}}) = x\mathbb{P} (X > x)$.
+		On a donc l'inégalité de Markov.
+
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Montrer que si $X$ admet une densité $f$, alors $\mathbb{E} (X) = \int_0^{\infty} x f(x) dx$
+	\begin{proof}
+		Soit $X$ une variable aléatoire réelle positive. On a que:
+		\begin{eqnarray*}
+			\mathbb{E} (X) &=& \int_0^{\infty} \mathbb{P} (X > t) dt \\
+			&=& \int_0^{\infty} \left( \int_0^{t} f(x) dx \right) dt \\
+			&=& \int_0^{\infty} \left( \int_0^{\infty} f(x) \mathds{1}_{[0, t]} dx \right) dt \\
+			&=& \int_0^{\infty} f(x) \left( \int_0^{\infty} \mathds{1}_{[0, t]} dt \right) dx \\
+			&=& \int_0^{\infty} x f(x) dx
+		\end{eqnarray*}
+	\end{proof}
+
+\end{question}
+
+\section{Espérance variable aléatoire réelle}
+
+\begin{question}
+	Donner la définition de espérance d'une variable aléatoire réelle.
+	\begin{proof}
+		Soit $(\Omega, \mathscr{F}, P)$ un espace probabilisé. Soit $X$ une variable aléatoire réelle. L'espérance de $X$ est le réel positif ou infini défini par:
+		\begin{equation*}
+			\mathbb{E} (X) = \mathbb{E} (X^+) - \mathbb{E} (X^-)
+		\end{equation*}
+		avec $X^+ = max(X, 0) et X^- = max(-X, 0)$. Elle es définie si les deux espérances est finie.
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Montrer que $\mathbb{E} (X^-) = \int_{-\infty}^0 \mathbb{P} (X < -t) dt$
+
+	\begin{proof}
+		On a que
+		\begin{equation*}
+			X^-(\omega) = \left\{
+			\begin{aligned}
+				0          & \text{si $X(\omega) \geq 0$} \\
+				-X(\omega) & \text{si $X(\omega) < 0$}
+			\end{aligned}
+			\right.
+		\end{equation*}
+		Donc
+		$$X^-(\omega) > t \iff X(\omega) < -t$$
+		Ainsi,
+		$$P(X^- > t) = P(X < -t)$$
+		Et donc $\mathbb{E} (X^-) = \int_{-\infty}^0 \mathbb{P} (X < -t) dt$.
+	\end{proof}
+\end{question}
+
+
+
+\section{CC3}
+
+Soit $X = (X_1, \dots, X_n), n \geq 2$ un vecteur aléatoire à valeurs dans $\mathbb{R}^n$.
+
+\begin{question}
+	Montrer que pour tout $i \in \{1, \dots, n\}$, $X_i$ est une variable aléatoire.
+	\begin{proof}
+		$X_i = \pi_i \circ X$ où $\pi_i$ est la projection sur la $i$-ème coordonnée. Or $\pi_i$ est continue,
+		elle est borélienne, donc messurable $\mathscr{B} (\mathbb{R}^n) \to \mathscr{B} (\mathbb{R})$.
+		Donc $X_i$ est une variable aléatoire.
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Donner la définition d'indépendance de $X_1, \dots, X_n$.
+	\begin{proof}
+		$X_1, \dots, X_n$ sont indépendantes si pour tout $B_1, \dots, B_n \in \mathscr{B} (\mathbb{R})$,
+		\begin{equation*}
+			\mathbb{P} (X_1 \in B_1, \dots, X_n \in B_n) = \mathbb{P} (X_1 \in B_1) \dots \mathbb{P} (X_n \in B_n)
+		\end{equation*}
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Montrer que si $X_1, \dots, X_n$ sont indépendantes alors $h_1 (X_1), \dots, h_n (X_n)$ sont indépendantes, pour tout $h_1, \dots, h_n$ boréliennes.
+
+	\begin{proof}
+		Soit $h_1, \dots, h_n$ boréliennes. On a que:
+		\begin{eqnarray*}
+			\mathbb{P} (h_1 (X_1) \in B_1, \dots, h_n (X_n) \in B_n) &=& \mathbb{P} (X_1 \in h_1^{-1} (B_1), \dots, X_n \in h_n^{-1} (B_n)) \\
+			&=& \mathbb{P} (X_1 \in h_1^{-1} (B_1)) \dots \mathbb{P} (X_n \in h_n^{-1} (B_n)) \\
+			&=& \mathbb{P} (h_1 (X_1) \in B_1) \dots \mathbb{P} (h_n (X_n) \in B_n)
+		\end{eqnarray*}
+	\end{proof}
+\end{question}
+
+Supposons que $\mathbb{E} (X_i^2) < \infty$ pour tout $i \in \{1, \dots, n\}$.
+
+\begin{question}
+	Montrer que $|\mathbb{E} (X_iX_j)| < \sqrt{\mathbb{E} (X_i^2) \mathbb{E} (X_j^2)}$ pour tout $i$ et $j$.
+	\begin{proof}
+		\begin{itemize}
+			\item On a que $|X_iX_j| \in \mathscr{L}^1$: $|x_ix_j| \leq (x_i^2 + x_j^2)$ et par croissance de l'espérance,
+			      on a que $|\mathbb{E} (X_iX_j)| \leq \mathbb{E} (|X_iX_j|) \leq \mathbb{E} (X_i^2) + \mathbb{E} (X_j^2) < \infty$.
+			\item Considérons le trinôme $f(t): \mathbb{E}(X_j^2)t^2 + 2\mathbb{E}(X_iX_j)t + \mathbb{E}(X_i^2)$. Il a des solutions si et seulement si son discriminant est positif, c'est-à-dire si et seulement si:
+			      \begin{equation*}
+				      \Delta = \mathbb{E}(X_iX_j)^2 - \mathbb{E}(X_i^2)\mathbb{E}(X_j^2) \geq 0
+			      \end{equation*}
+			      Or c'est un polynôme positif, donc son discriminant est négatif ou nul. Donc:
+			      \begin{equation*}
+				      \Delta \leq 0
+			      \end{equation*}
+		\end{itemize}
+
+		On retrove bine l'inégalité de Cauchy-Schwarz.
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Donner la définition de covariance et montrer que si $X_1, \dots, X_n$ sont indépendantes, alors $Var(\sum_{i=1}^n X_i) = \sum_{i=1}^n Var(X_i)$.
+	\begin{proof}
+		Définition: $cov(X_i, X_j) = \mathbb{E} (X_iX_j) - \mathbb{E} (X_i) \mathbb{E} (X_j)$., qui est aussi égal à $\mathbb{E} ((X_i - \mathbb{E} (X_i))(X_j - \mathbb{E} (X_j)))$.
+
+		On sait que:
+		\begin{eqnarray*}
+			Var(\sum_{i=1}^n X_i) &=& \sum_{i,j=1}^n cov(X_i, X_j) \\
+			&=& \sum_{i=1}^n Var(X_i) + \sum_{i \neq j} cov(X_i, X_j) \\
+		\end{eqnarray*}
+		Or si $i \neq j$, $cov(X_i, X_j) = 0$ car $X_i$ et $X_j$ sont indépendantes. Donc:
+		\begin{equation*}
+			Var(\sum_{i=1}^n X_i) = \sum_{i=1}^n Var(X_i)
+		\end{equation*}
+
+	\end{proof}
+\end{question}
+
+\section{Convergence}
+
+\begin{question}
+	Donner la définition de convergence en loi d'une suite de variables aléatoires réelles.
+	\begin{proof}
+		Soit $(X_n)$ une suite de variables aléatoires réelles. On dit que $(X_n)$ converge en loi vers $X$ si pour tout $x \in \mathbb{R}$ tel que $F_X$ est continue en $x$, on a que:
+		\begin{equation*}
+			\lim_{n \to \infty} F_{X_n} (x) = F_X (x)
+		\end{equation*}
+	\end{proof}
+
+\end{question}
+
+\begin{question}
+	Montrer que si $X_i$ est une suite de variables aléatoires réelles IID, alors $\lim_n X_x = X_1$.
+	\begin{proof}
+		Soit $x \in \mathbb{R}$ tel que $F_{X_1}$ est continue en $x$. On a que:
+		\begin{eqnarray*}
+			\lim_{n \to \infty} F_{X_n} (x) &=& \lim_{n \to \infty} F_{X_1} (x) \\
+			&=& F_{X_1} (x)
+		\end{eqnarray*}
+	\end{proof}
+\end{question}
+
+
+\begin{question}
+	Donner la définition de convergence en probabilité d'une suite de variables aléatoires réelles.
+	\begin{proof}
+		Soit $(X_n)$ une suite de variables aléatoires réelles. On dit que $(X_n)$ converge en probabilité vers $X$ si pour tout $\epsilon > 0$, on a que:
+		\begin{equation*}
+			\lim_{n \to \infty} \mathbb{P} (|X_n - X| > \epsilon) = 0
+		\end{equation*}
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Monter que la convergence en probabilité implique la convergence en loi.
+	\begin{proof}
+		Soit $(X_n)$ une suite de variables aléatoires réelles qui converge en probabilité vers $X$.
+
+		\begin{eqnarray*}
+			F_{X_n} (x) &=& \mathbb{P} (X_n \leq x) \\
+			&=& \mathbb{P} (X + (X_n - X) \leq x) \\Z
+			&\leq& \mathbb{P} (X+(X_n-X) \leq x, |X_n - X| \leq \epsilon) + \mathbb{P} (|X_n - X| > \epsilon) \\
+			&\leq& \mathbb{P} (X \leq x - \epsilon) + \mathbb{P} (|X_n - X| > \epsilon) \underset{n\to +\infty}{\longrightarrow} \mathbb{P}(X \leq x + \epsilon)
+		\end{eqnarray*}
+		Donc $\limsup_n F_{X_n} (x) \leq F_X(x)$.
+		De meme:
+		\begin{eqnarray*}
+			F_{X_n} (x) &=& \mathbb{P} (X_n \leq x) \\
+			&\geq& \mathbb{P} (X \leq x + (X-X_n), |X_n - X| \leq \epsilon) \\
+			&\geq& \mathbb{P} (X \leq x - \epsilon, |X_n - X| \leq \epsilon) \\
+			&\geq& \mathbb{P} (X \leq x - \epsilon) - \mathbb{P} (|X_n - X| > \epsilon)  \underset{n\to +\infty}{\longrightarrow} \mathbb{P}(X \leq x - \epsilon)
+		\end{eqnarray*}
+		Donc $\limsup_n F_{X_n} (x) \geq F_X(x)$.
+
+		Si $F_X$ est continue en $x$, on a que $F_X(x) = \lim_n F_{X_n} (x)$.
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Donner la définion de convergence presque sûre d'une suite de variables aléatoires réelles.
+	\begin{proof}
+		Soit $(X_n)$ une suite de variables aléatoires réelles. On dit que $(X_n)$ converge presque sûrement vers $X$ si
+		\begin{equation*}
+			\mathbb{P} (\Omega`) = 1
+		\end{equation*}
+		avec $\Omega` = \{\omega \in \Omega, \lim_n X_n (\omega) = X(\omega)\}$.
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Donner la définition de la limite supérieure d'une suite d'événements et de la limite inférieure d'une suite d'événements.
+	\begin{proof}
+		Soit $(A_n)$ une suite d'événements. On définit la limite supérieure de $(A_n)$ par:
+		\begin{equation*}
+			\limsup_n A_n = \cap_{n \geq 1} \cup_{k \geq n} A_k
+		\end{equation*}
+
+		On définit la limite inférieure de $(A_n)$ par:
+		\begin{equation*}
+			\liminf_n A_n = \cup_{n \geq 1} \cap_{k \geq n} A_k
+		\end{equation*}
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Enoncer les deux lemmes de Borel-Cantelli.
+	\begin{proof}
+		Soit $(A_n)$ une suite d'événements.
+		\begin{enumerate}
+			\item Si $\sum_n \mathbb{P} (A_n) < \infty$, alors $\mathbb{P} (\limsup_n A_n) = 0$
+			\item Si les $(A_n)$ sont indépendants et si $\sum_n \mathbb{P} (A_n) = \infty$, alors $\mathbb{P} (\limsup_n A_n) = 1$
+		\end{enumerate}
+	\end{proof}
+\end{question}
+
+
+\begin{question}
+	Montrer que si $\sum_n^{\infty} \mathbb{P} (|X_n - X| > \epsilon) < \infty$ pour tout $\epsilon > 0$, alors $(X_n)$ converge presque sûrement vers $X$.
+
+	\begin{proof}
+		Soit $\epsilon > 0$. On pose $A_n = \{\omega \in \Omega, |X_n(\omega) - X(\omega)| > \epsilon\}$. En utilisant le premier
+		lemme de Borel-Cantelli, on a que la probabilité de la réalisation infinie des $A_n$ est nulle, i.e.
+		\begin{equation*}
+			\mathbb{P} (\limsup_n A_n) = 0
+		\end{equation*}
+		Or ceci est équivalent a la convergence presque sûre de $(X_n)$ vers $X$.
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Montrer que si $(X_n)$ converge en probabilité il existe une sous-suite $(X_{n_i})$ qui converge presque sûrement vers $X$.
+	\begin{proof}
+		Nototns $\epsilon_i = 2^{-i}$. La convergence en probabilité implique la convergence de $\mathbb{P} (|X_n - X| > \epsilon_i)$ quand $m$ tends vers $0$.
+		On en déduit qu'il eixiste une suite strictement croissant d'indices $(n_i)$ telle que
+		$$\forall i \leq 1, \quad \mathbb{P} (|X_{n_i} - X| > \epsilon_i) < \frac{1}{i^2}$$
+		Ainsi il suffit de vérifier que
+		$$\forall \epsilon > 0, \quad \sum_{i \geq 1} \mathbb{P} (|X_{n_i} - X| \geq \epsilon) < \infty$$
+		En effet la convergence vers $0$ des $\epsilon_i$ garanti qu'il existes $i_0$ tel que $\forall i \geq i_o, \quad
+			\epsilon_{i_0} \leq \epsilon$. Pour tout $i \geq i_0$ on a donc que
+		$$ \left\{|X_{n_i} - X| \geq \epsilon \right\} \subset \left\{|X_{n_i} - X| \geq \epsilon_{i} \right\}$$
+		Ainsi on peut majorer la série ci-dessus par $i^{-2}$ a partir d'un certain rang, et donc elle converge.
+		On a donc montré la convergence presque sûre de la sous-suite $(X_{n_i})$.
+	\end{proof}
+\end{question}
+
+
+\begin{question}
+	Enoncer et demontrer la loi faible des grands nombres.
+	\begin{proof}
+		Soit $(X_n)$ une suite de variables aléatoires réelles indépendantes et identiquement distribuées (IID)
+		\begin{equation}
+			\frac{1}{n}\sum_{i=1}^n \mathbb{E} (X_i) \overset{Pr}{\underset{n\to +\infty}{\longrightarrow}} \mathbb{E} (X_1)
+		\end{equation}
+
+		Commes les $X_i$ sont IID, on a que $\mathbb{E} (X_i) = \mathbb{E} (X_1)$ pour tout $i$ et donc
+		$Var(X_i) = Var(X_1)$ pour tout $i$. On pose $S_n = \sum_{i=1}^n X_i$.
+
+		Comme les $X_i$ sont IID, on a que $Var(S_n) = nVar(X_1)$ et par linéarité de l'esérance on a aussi que
+		$\mathbb{E} (S_n) = n\mathbb{E} (X_1)$. En utilisant l'inégalité de Bienaymé-Tchebychev, on a que:
+		\begin{equation*}
+			\forall t > 0, \quad \mathbb{P} (|S_n - n\mathbb{E} (X_1)| \geq t) \leq \frac{nVar(X_1)}{t^2}
+		\end{equation*}
+		Si on pose $t = \epsilon n$, on a que:
+		\begin{equation*}
+			\forall \epsilon > 0, \quad \forall n \geq 1, \quad \mathbb{P} \left(|S_n - n\mathbb{E} (X_1)| \geq \epsilon n\right) =
+			\mathbb{P} \left(|\frac{S_n}{n} - \mathbb{E} (X_1)| \geq \epsilon\right) \leq \frac{Var(X_1)}{\epsilon^2 n} \underset{n\to +\infty}{\longrightarrow} 0
+		\end{equation*}
+		On a ainsi que:
+		$$ \forall \epsilon > 0,\quad \mathbb{P} \left(|\frac{S_n}{n} - \mathbb{E} (X_1)| \geq \epsilon\right) \underset{n\to +\infty}{\longrightarrow} 0$$
+
+
+
+	\end{proof}
+\end{question}
+\end{document}
+
+
+
