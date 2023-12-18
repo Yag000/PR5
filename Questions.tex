@@ -13,20 +13,22 @@
 
 \usepackage{hyperref}        
 
-
 \usepackage[shortlabels]{enumitem}
 
-\newcommand{\indep}{\perp \!\!\! \perp}
+\newcommand{\indep}{\perp\!\!\! \perp}
 
 \theoremstyle{plain}
 \newtheorem{question}{Question}
 
 
 \begin{document}
-\title {Questions Cours}
+% \LARGE Useful for dyslexic people
+
+\title{Questions Cours}
 \author{Yago iglesias}
 \maketitle
 \tableofcontents
+
 
 \section{$\sigma$-algèbres}
 
@@ -200,7 +202,7 @@
 		\begin{equation*}
 			\mathbb{E} (X) = \mathbb{E} (X^+) - \mathbb{E} (X^-)
 		\end{equation*}
-		avec $X^+ = max(X, 0) et X^- = max(-X, 0)$. Elle es définie si les deux espérances est finie.
+		avec $X^+ = \max(X, 0) et X^- = \max(-X, 0)$. Elle es définie si les deux espérances est finie.
 	\end{proof}
 \end{question}
 
@@ -218,9 +220,9 @@
 			\right.
 		\end{equation*}
 		Donc
-		$$X^-(\omega) > t \iff X(\omega) < -t$$
+		\[X^-(\omega) > t \iff X(\omega) < -t\]
 		Ainsi,
-		$$P(X^- > t) = P(X < -t)$$
+		\[P(X^- > t) = P(X < -t)\]
 		Et donc $\mathbb{E} (X^-) = \int_{-\infty}^0 \mathbb{P} (X < -t) dt$.
 	\end{proof}
 \end{question}
@@ -436,7 +438,7 @@ Supposons que $\mathbb{E} (X_i^2) < \infty$ pour tout $i \in \{1, \dots, n\}$.
 	\begin{proof}
 		Soit $(X_n)$ une suite de variables aléatoires réelles indépendantes et identiquement distribuées (IID)
 		\begin{equation}
-			\frac{1}{n}\sum_{i=1}^n \mathbb{E} (X_i) \overset{Pr}{\underset{n\to +\infty}{\longrightarrow}} \mathbb{E} (X_1)
+			\frac{1}{n}\sum_{i=1}^n \mathbb{E} (X_i) \overset{\Pr}{\underset{n\to +\infty}{\longrightarrow}} \mathbb{E} (X_1)
 		\end{equation}
 
 		Commes les $X_i$ sont IID, on a que $\mathbb{E} (X_i) = \mathbb{E} (X_1)$ pour tout $i$ et donc
@@ -454,12 +456,6 @@ Supposons que $\mathbb{E} (X_i^2) < \infty$ pour tout $i \in \{1, \dots, n\}$.
 		\end{equation*}
 		On a ainsi que:
 		$$ \forall \epsilon > 0,\quad \mathbb{P} \left(|\frac{S_n}{n} - \mathbb{E} (X_1)| \geq \epsilon\right) \underset{n\to +\infty}{\longrightarrow} 0$$
-
-
-
 	\end{proof}
 \end{question}
 \end{document}
-
-
-
