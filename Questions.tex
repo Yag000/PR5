@@ -242,6 +242,31 @@
 \end{question}
 
 \begin{question}
+	Donner la définition de variance d'une variable aléatoire réelle.
+	\begin{proof}
+		Soit $(\Omega, \mathscr{F}, P)$ un espace probabilisé. Soit $X$ une variable aléatoire réelle. La variance de $X$ est le réel positif ou infini défini par:
+		\begin{equation*}
+			Var(X) = \mathbb{E} ((X - \mathbb{E} (X))^2)
+		\end{equation*}
+		Elle est définie si $\mathbb{E} (X^2)$ est finie.
+	\end{proof}
+\end{question}
+
+\begin{question}
+	Montrer que $Var(X) = \mathbb{E} (X^2) - \mathbb{E} (X)^2$
+	\begin{proof}
+		On a que
+		\begin{eqnarray*}
+			Var(X) &=& \mathbb{E} ((X - \mathbb{E} (X))^2) \\
+			&=& \mathbb{E} (X^2 - 2X\mathbb{E} (X) + \mathbb{E} (X)^2) \\
+			&=& \mathbb{E} (X^2) - 2\mathbb{E} (X)\mathbb{E} (X) + \mathbb{E} (X)^2 \\
+			&=& \mathbb{E} (X^2) - \mathbb{E} (X)^2
+		\end{eqnarray*}
+	\end{proof}
+\end{question}
+
+
+\begin{question}
 	Enoncer et démontrer l'inégalité de Bienaymé-Tchebychev.
 	\begin{proof}
 		Soit $X$ une variable aléatoire réelle. Alors pour tout $t > 0$,
