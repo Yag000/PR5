@@ -236,7 +236,7 @@
 	i.e. si $\mathbb{E} (|X|^p) < \infty$, alors $\mathbb{E} (|X|^q) < \infty$ pour tout $q \in [0, p]$.
 	\begin{proof}
 		Si $0 \leq p \leq r$, on a les inégalités suivantes entre variables aléatoires positives:
-		$$|X|^p \leq \mathbb{1}_{\{|X|\leq 1\}} + |X|^r\mathbb{1}_{\{|X|>1\}} \leq 1 + |X|^r$$
+		$$|X|^p \leq \mathds{1}_{\{|X|\leq 1\}} + |X|^r\mathds{1}_{\{|X|>1\}} \leq 1 + |X|^r$$
 		Par croissance de l’espérance des v.a. positives, on en déduit
 		$$\mathbb{E}(|X|^p) \leq \mathbb{E}(1) + \mathbb{E}(|X|^r) = 1 + \mathbb{E}(|X|^r) < +\infty$$
 	\end{proof}
