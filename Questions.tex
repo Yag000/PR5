@@ -212,14 +212,14 @@
 \end{question}
 
 \begin{question}
-	Montrer que $\mathbb{E} (X^-) = \int_{-\infty}^0 \mathbb{P} (X < -t) dt$
+	Montrer que $\mathbb{E} (X^-) = \int_0^{\infty} \mathbb{P} (X < -t) dt$
 	\begin{proof}
 		On a que
 		\begin{equation*}
 			X^-(\omega) = \left\{
 			\begin{aligned}
-				0          & \text{si $X(\omega) \geq 0$} \\
-				-X(\omega) & \text{si $X(\omega) < 0$}
+				0          & \quad \text{si $X(\omega) \geq 0$} \\
+				-X(\omega) & \quad \text{si $X(\omega) < 0$}
 			\end{aligned}
 			\right.
 		\end{equation*}
@@ -227,7 +227,7 @@
 		\[X^-(\omega) > t \iff X(\omega) < -t\]
 		Ainsi,
 		\[P(X^- > t) = P(X < -t)\]
-		Et donc $\mathbb{E} (X^-) = \int_{-\infty}^0 \mathbb{P} (X < -t) dt$.
+		Et donc $\mathbb{E} (X^-) = \int_0^{\infty} \mathbb{P} (X < -t) dt$.
 	\end{proof}
 \end{question}
 
