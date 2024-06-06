@@ -1,0 +1,74 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@main
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Build dyslexia file
+        run: python scripts/dyslexia.py
+
+      - name: Download fonts
+        run: wget wget https://github.com/antijingoist/opendyslexic/releases/download/v0.91.12/opendyslexic-0.910.12-rc2-2019.10.17.zip || true # ignore if it fails
+      - name: Unzip fonts
+        run: unzip opendyslexic-0.910.12-rc2-2019.10.17.zip
+      - name: Remove opendyslexic pdf
+        run: rm opendyslexic-characters.pdf
+
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |
+              questions.tex
+              questions.tex
+          latexmk_use_xelatex: true
+          extra_fonts: |
+            ./OpenDyslexic-Bold.otf
+            ./OpenDyslexic-Bold-Italic.otf
+            ./OpenDyslexic-Italic.otf
+            ./OpenDyslexic-Regular.otf
+
+      # From here it is copied from : https://github.com/jonhue/pubtex-action
+      # with a few modifications
+      - name: Move PDFs
+        run: mv ./*.pdf dist
+        shell: bash
+      - name: Move index page
+        run: cp README.md dist/index.md
+        shell: bash
+      - uses: actions/upload-artifact@master
+        with:
+          name: pdfs-deploy
+          path: dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/download-artifact@master
+        with:
+          name: pdfs-deploy
+          path: dist
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: dist
+          allow_empty_commit: true
+          force_orphan: true
+          enable_jekyll: true
+
+
+
